@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    <style>
+      .main-template-wrapper{
+        text-align: center;
+        height: 100vh;
+        vertical-align: middle;
+        width: 100%;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+      }
+      .main-enter-data{
+        height: 100vh;
+        width: 100%;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+      }
+      .post-data-div{
+        position: relative;
+      }
+      .text-update{
+        color: #fff;
+        width: 1050px;
+        font-size: 54px;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -345px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-enter-data" id="input-template">
+      <h3 class="font-weight-bold">Format</h3>
+      <div class="d-flex mb-5">
+        <button id="english-format" class="btn btn-outline-primary mr-3">Format 1</button>
+        <button id="arabic-format" class="btn btn-outline-primary">Format 2</button>
+      </div>
+      <form action="" style="width: 800px;" id="input-form" dir="ltr" lang="ar">
+        <div class="form-group">
+          <label for="data">Enter Post Data</label>
+          <input type="text" class="form-control w-100" id="data" placeholder="Hello World !!!" maxlength="110">
+        </div>
+        <div class="form-group">
+          <label for="post-img">Upload Post Image</label>
+          <input type="file" class="form-control-file"  onchange="readURL(this);" id="post-img">
+        </div>
+        <div class="form-group">
+          <select class="custom-select select-langaue">
+            <option selected>Select Language</option>
+            <option value="English">English</option>
+            <option value="Arabic">Arabic</option>
+          </select>
+        </div>
+        <button type="button" id="hello" class="btn btn-primary mb-2">Submit</button>
+      </form>
+      <img class="post-img-preview d-none" id="img-src" src="" alt="previes img">
+      <!-- <img class="post-img-previewfd" id="img-src2" src="" alt="previes img"> -->
+    </div>
+    <!-- main Template Arabic -->
+    <div class="main-template-wrapper d-none" id="img-template-arb">
+      <img src="arb-main.jpeg" alt="eng-main-temp">
+        <div class="post-data-div">
+          <p class="post-data-preview text-update">Vision Fund 2 led a $300 million investment in ElasticRun, valuing India's commerce platform at $1.5 billion</p>
+        </div>
+    </div>
+    <!-- main Template English -->
+    <div class="main-template-wrapper d-none" id="img-template-eng">
+      <img src="eng-mian.jpeg" alt="eng-main-temp">
+        <div class="post-data-div">
+          <p class="post-data-preview text-update">Vision Fund 2 led a $300 million investment in ElasticRun, valuing India's commerce platform at $1.5 billion</p>
+        </div>
+    </div>
+
+    <!-- main Template Arabic with Image -->
+    <div class="d-none" id="arabic-post-template-with-img" style="width: 1000px; margin: 0 auto; margin-top: 50px; margin-bottom: 50px;">
+      <div>
+        <img src="forbes-logo.png" style="width: 15%; top: 80px; left: 30px; position: relative;" alt="">
+        <img class="post-img-previewfd w-100" id="img-src2" src="" alt="preview img">
+      </div>
+      <div class="text-center" style="background-image: url('Map.png'); background-size: cover; padding: 0 40px; padding-bottom: 35px;">
+        <img src="Breaking-new-Ar.png" class="w-50" style="margin-top: -67px;" alt="">
+        <p class="post-data-preview text-white" style="font-size: 40px; font-weight: bold; margin-top: 30px;">Vision Fund 2 led a $300 million investment in ElasticRun, valuing India's commerce platform at $1.5 billion</p>
+      </div>
+    </div>
+
+    <!-- main Template English with Image -->
+    <div class="d-none" id="english-post-template-with-img" style="width: 1000px; margin: 0 auto; margin-top: 50px; margin-bottom: 50px;">
+      <div>
+        <img src="forbes-logo.png" style="width: 15%; top: 80px; left: 30px; position: relative;" alt="">
+        <img class="post-img-previewfd w-100" id="img-src3" src="" alt="preview img">
+      </div>
+      <div class="text-center" style="background-image: url('Map.png'); background-size: cover; padding: 0 40px; padding-bottom: 35px;">
+        <img src="Breaking-news-Eng.png" class="w-50" style="margin-top: -67px;" alt="">
+        <p class="post-data-preview text-white" style="font-size: 40px; font-weight: bold; margin-top: 30px;">Vision Fund 2 led a $300 million investment in ElasticRun, valuing India's commerce platform at $1.5 billion</p>
+      </div>
+    </div>
+
+
+
+    <script>
+      $(document).ready(function(){
+        $('#hello').click(function(){
+       
+          var image = $('#img-src').attr('src');
+          // document.getElementByID('jj').
+          // $('#img-src2').attr('src',image);
+          var selectedLanguage = $('select.select-langaue').children("option:selected").val();
+          if(selectedLanguage=='Arabic' && !image){
+            // alert('arabic no image')
+            $('.post-data-preview').text($('#data').val());
+            $('#img-template-arb').removeClass('d-none');
+            $('#input-template').addClass('d-none');
+          }
+          else if(selectedLanguage=='English' && !image){
+            // alert('eng no image')
+            $('.post-data-preview').text($('#data').val());
+            $('#img-template-eng').removeClass('d-none');
+            $('#input-template').addClass('d-none');
+          }
+          else if(selectedLanguage=='English' && image){
+            // alert('eng with image')
+            $('.post-data-preview').text($('#data').val());
+            $('#img-src3').attr('src',image);
+            $('#english-post-template-with-img').removeClass('d-none');
+            $('#input-template').addClass('d-none');
+          }
+          else if(selectedLanguage=='Arabic' && image){
+            // alert('ar with image')
+            $('.post-data-preview').text($('#data').val());
+            $('#img-src2').attr('src',image);
+            $('#arabic-post-template-with-img').removeClass('d-none');
+            $('#input-template').addClass('d-none');
+          }
+        });
+        $('#arabic-format').click(function(){
+          $('#input-form').attr('dir','rtl')
+        });
+        $('#english-format').click(function(){
+          $('#input-form').attr('dir','ltr')
+        });
+      });
+      
+      function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.post-img-preview')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+  </body>
+</html>
